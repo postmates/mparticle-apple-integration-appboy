@@ -1,5 +1,5 @@
 //
-//  MPKitAppboy.mm
+//  MPKitAppboy.m
 //
 //  Copyright 2016 mParticle, Inc.
 //
@@ -137,8 +137,10 @@ NSString *const eabOptions = @"options";
 }
 
 - (MPKitExecStatus *)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo {
+#if TARGET_OS_IOS == 1
     [appboyInstance getActionWithIdentifier:identifier forRemoteNotification:userInfo completionHandler:^{}];
-
+#endif
+    
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceAppboy) returnCode:MPKitReturnCodeSuccess];
     return execStatus;
 }
@@ -262,8 +264,10 @@ NSString *const eabOptions = @"options";
 }
 
 - (MPKitExecStatus *)receivedUserNotification:(NSDictionary *)userInfo {
+#if TARGET_OS_IOS == 1
     [appboyInstance registerApplication:[UIApplication sharedApplication] didReceiveRemoteNotification:userInfo fetchCompletionHandler:^(UIBackgroundFetchResult fetchResult) {}];
-
+#endif
+    
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceAppboy) returnCode:MPKitReturnCodeSuccess];
     return execStatus;
 }
@@ -276,8 +280,10 @@ NSString *const eabOptions = @"options";
 }
 
 - (MPKitExecStatus *)setDeviceToken:(NSData *)deviceToken {
+#if TARGET_OS_IOS == 1
     [appboyInstance registerPushToken:[NSString stringWithFormat:@"%@", deviceToken]];
-
+#endif
+    
     MPKitExecStatus *execStatus = [[MPKitExecStatus alloc] initWithSDKCode:@(MPKitInstanceAppboy) returnCode:MPKitReturnCodeSuccess];
     return execStatus;
 }
