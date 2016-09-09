@@ -12,26 +12,41 @@ Pod::Spec.new do |s|
     s.author           = { "mParticle" => "support@mparticle.com" }
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-appboy.git", :tag => s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticles"
+    s.default_subspec  = 'DefaultVersion'
 
-    s.ios.deployment_target = "7.0"
-    s.ios.source_files      = 'mParticle-Appboy/*.{h,m,mm}'
-    s.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
-    s.ios.dependency 'Appboy-iOS-SDK', '2.23.0'
-    s.ios.frameworks = 'CoreTelephony', 'SystemConfiguration'
-    s.libraries = 'z'
+    def s.subspec_common(ss)
+        ss.ios.deployment_target = "7.0"
+        ss.ios.source_files      = 'mParticle-Appboy/*.{h,m,mm}'
+        ss.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
+        ss.ios.dependency 'Appboy-iOS-SDK', '2.23.0'
+        ss.ios.frameworks = 'CoreTelephony', 'SystemConfiguration'
+        ss.libraries = 'z'
 
-    s.ios.pod_target_xcconfig = {
-        'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Appboy-iOS-SDK/**',
-        'OTHER_LDFLAGS' => '$(inherited) -l"AppboyKitLibrary"'
-    }
+        ss.ios.pod_target_xcconfig = {
+            'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Appboy-iOS-SDK/**',
+            'OTHER_LDFLAGS' => '$(inherited) -l"AppboyKitLibrary"'
+        }
 
-    s.tvos.deployment_target = "9.0"
-    s.tvos.source_files      = 'mParticle-Appboy/*.{h,m,mm}'
-    s.tvos.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
-    s.tvos.dependency 'Appboy-tvOS-SDK', '2.22.1'
-    s.tvos.frameworks = 'SystemConfiguration'
+        ss.tvos.deployment_target = "9.0"
+        ss.tvos.source_files      = 'mParticle-Appboy/*.{h,m,mm}'
+        ss.tvos.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
+        ss.tvos.dependency 'Appboy-tvOS-SDK', '2.22.1'
+        ss.tvos.frameworks = 'SystemConfiguration'
 
-    s.tvos.pod_target_xcconfig = {
-        'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Appboy-tvOS-SDK/**'
-    }
+        ss.tvos.pod_target_xcconfig = {
+            'LIBRARY_SEARCH_PATHS' => '$(inherited) $(PODS_ROOT)/Appboy-tvOS-SDK/**'
+        }
+    end
+
+    s.subspec 'DefaultVersion' do |ss|
+      ss.ios.dependency 'Appboy-iOS-SDK', '2.23.0'
+      ss.tvos.dependency 'Appboy-tvOS-SDK', '2.22.1'
+      s.subspec_common(ss)
+    end
+
+    s.subspec 'UserDefinedVersion' do |ss|
+      ss.ios.dependency 'Appboy-iOS-SDK'
+      ss.tvos.dependency 'Appboy-tvOS-SDK'
+      s.subspec_common(ss)
+    end
 end
