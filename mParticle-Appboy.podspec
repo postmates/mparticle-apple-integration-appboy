@@ -39,14 +39,14 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'DefaultVersion' do |ss|
-      ss.ios.dependency 'Appboy-iOS-SDK', '2.23.0'
-      ss.tvos.dependency 'Appboy-tvOS-SDK', '2.22.1'
-      s.subspec_common(ss)
+        ss.ios.dependency 'Appboy-iOS-SDK', '2.23.0'
+        ss.tvos.dependency 'Appboy-tvOS-SDK', '2.22.1'
+        s.subspec_common(ss)
     end
 
     s.subspec 'UserDefinedVersion' do |ss|
-      ss.ios.dependency 'Appboy-iOS-SDK'
-      ss.tvos.dependency 'Appboy-tvOS-SDK'
-      s.subspec_common(ss)
+        ss.ios.dependency 'Appboy-iOS-SDK'
+        ss.tvos.dependency 'Appboy-tvOS-SDK'
+        s.subspec_common(ss)
     end
 end
