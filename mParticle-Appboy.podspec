@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     s.author           = { "mParticle" => "support@mparticle.com" }
     s.source           = { :git => "https://github.com/mparticle-integrations/mparticle-apple-integration-appboy.git", :tag => s.version.to_s }
     s.social_media_url = "https://twitter.com/mparticles"
-    s.default_subspec  = 'DefaultVersion'
+    s.default_subspec  = "DefaultVersion"
 
     def s.subspec_common(ss)
         ss.ios.deployment_target = "7.0"
