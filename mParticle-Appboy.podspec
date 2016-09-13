@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = "mParticle-Appboy"
-    s.version          = "6.7.3"
+    s.version          = "6.8.0"
     s.summary          = "Appboy integration for mParticle"
 
     s.description      = <<-DESC
@@ -18,7 +18,6 @@ Pod::Spec.new do |s|
         ss.ios.deployment_target = "7.0"
         ss.ios.source_files      = 'mParticle-Appboy/*.{h,m,mm}'
         ss.ios.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
-        ss.ios.dependency 'Appboy-iOS-SDK', '2.23.0'
         ss.ios.frameworks = 'CoreTelephony', 'SystemConfiguration'
         ss.libraries = 'z'
 
@@ -30,7 +29,6 @@ Pod::Spec.new do |s|
         ss.tvos.deployment_target = "9.0"
         ss.tvos.source_files      = 'mParticle-Appboy/*.{h,m,mm}'
         ss.tvos.dependency 'mParticle-Apple-SDK/mParticle', '~> 6.7'
-        ss.tvos.dependency 'Appboy-tvOS-SDK', '2.22.1'
         ss.tvos.frameworks = 'SystemConfiguration'
 
         ss.tvos.pod_target_xcconfig = {
@@ -39,8 +37,8 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'DefaultVersion' do |ss|
-        ss.ios.dependency 'Appboy-iOS-SDK', '2.23.0'
-        ss.tvos.dependency 'Appboy-tvOS-SDK', '2.22.1'
+        ss.ios.dependency 'Appboy-iOS-SDK', '2.24.0'
+        ss.tvos.dependency 'Appboy-tvOS-SDK', '2.24.0'
         s.subspec_common(ss)
     end
 
